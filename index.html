@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Will You Marry Me?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      color: #333;
+      text-align: center;
+    }
+    h1, h2 {
+      font-family: 'Pacifico', cursive;
+      color: #d6336c;
+    }
+    .container {
+      padding: 40px;
+    }
+    .button {
+      background: #ff66a3;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+    .button:hover {
+      transform: scale(1.1);
+    }
+    #noBtn { position: relative; }
+    .hidden { display: none; }
+    audio { margin-top: 20px; }
+    .heart {
+      font-size: 2em;
+      animation: heartbeat 1s infinite;
+      color: red;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="welcome">
+  <h1>Hi My Love 💖</h1>
+  <p>I've tried something just for you...</p>
+  <button class="button" onclick="nextSection('countdown')">Start the Journey 💌</button>
+</div>
+
+<div class="container hidden" id="countdown">
+  <h2>It’s been...</h2>
+  <p id="timer"></p>
+  <audio controls autoplay loop>
+    <source src="/src/moon.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <button class="button" onclick="nextSection('funFacts')">Next 💞</button>
+</div>
+
+<div class="container hidden" id="funFacts">
+  <h2>Fun Facts About Us 🥰</h2>
+  <ul style="text-align: left; max-width: 500px; margin: auto;">
+    <li>First message: Ab exjaxt date to yaad ni but 26 feb</li>
+    <li>First movie: Jo dekhi bhi ni sahi se. John Wick 3 🎬</li>
+    <li>Your cute nickname: Meraa Pinnu 🌸</li>
+    <li>When I knew I loved you: On our second date 💕</li>
+  </ul>
+  <button class="button" onclick="nextSection('quiz')">Next 🧠</button>
+</div>
+
+<div class="container hidden" id="quiz">
+  <h2>Quiz Time!</h2>
+  <p>What's my favorite food you make?</p>
+  <input type="text" placeholder="Bus sochna h" />
+  <br><br>
+  <p>Which place do I want to visit with you most?</p>
+  <input type="text" placeholder="Ye bata sktee ho" />
+  <br><br>
+  <p>Waise to I know but fir bhi I want to know, How much do you love me?</p>
+  <button class="button" onclick="alert('I love you MORE!')">More than anything ❤️</button>
+  <br><br>
+  <button class="button" onclick="nextSection('proposal')">Ready for the Quix my Love 💍</button>
+</div>
+
+<div class="container hidden" id="proposal">
+  <h2>Will You Be my Everything my LIfe? 💍</h2>
+  <button class="button" onclick="showYesPage()">YES ❤️</button>
+  <button class="button" id="noBtn" onclick="moveButton(this)">NO 🙈</button>
+</div>
+
+<div class="container hidden" id="yesPage">
+  <h1>YAY! 🎉</h1>
+  <p>You said YES! My heart is dancing! 💃🕺</p>
+  <p class="heart">❤️❤️❤️❤️❤️</p>
+  <button class="button" onclick="nextSection('gallery')">See Our Journey 📸</button>
+</div>
+
+<div class="container hidden" id="gallery">
+  <h2>Our Beautiful Journey 📸</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <img src="src/1.jpeg" style="width: 200px; border-radius: 15px;">
+    <img src="src/2.jpeg" style="width: 200px; border-radius: 15px;">
+    <img src="src/3.jpeg" style="width: 200px; border-radius: 15px;">
+  </div>
+  <br>
+  <button class="button" onclick="nextSection('finalPage')">Next 💍</button>
+</div>
+
+<div class="container hidden" id="finalPage">
+  <h1>The Real Surprise 💌</h1>
+  <p>From the moment I met you, I knew you were the one. So here’s something from my heart...</p>
+  <video width="300" controls style="margin-top: 20px;">
+    <source src="src//video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br><br>
+  <p style="margin-top: 30px;">Let’s begin our forever, my love 💖</p>
+</div>
+
+<script>
+  const startDate = new Date("2021-01-10T00:00:00");
+  const timerElement = document.getElementById("timer");
+  function updateTimer() {
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    timerElement.textContent = `${days} days and ${hours} hours of love 💖`;
+  }
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  function nextSection(id) {
+    document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  let clickCount = 0;
+  function moveButton(btn) {
+    clickCount++;
+    if (clickCount < 4) {
+      const x = Math.floor(Math.random() * 200) - 100;
+      const y = Math.floor(Math.random() * 200) - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+      alert("Try again... 😉");
+    } else {
+      alert("Okay okay... just say YES already 😘");
+    }
+  }
+
+  function showYesPage() {
+    nextSection('yesPage');
+  }
+</script>
+
+</body>
+</html>
