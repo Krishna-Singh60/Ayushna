@@ -60,7 +60,7 @@
 <div class="container hidden" id="countdown">
   <h2>It’s been...</h2>
   <p id="timer"></p>
-  <audio controls autoplay loop>
+  <audio id="bgMusic" controls loop>
     <source src="src/moon.mp3" type="audio/mpeg">
     Your browser does not support audio.
   </audio>
@@ -70,8 +70,8 @@
 <div class="container hidden" id="funFacts">
   <h2>Fun Facts About Us 🥰</h2>
   <ul style="text-align: left; max-width: 500px; margin: auto;">
-    <li>First message: Ab exjaxt date to yaad ni but 26 feb</li>
-    <li>First movie: Jo dekhi bhi ni sahi se. John Wick 3 🎬</li>
+    <li>First message: 26 Feb</li>
+    <li>First movie: John Wick 3 🎬</li>
     <li>Your cute nickname: Meraa Pinnu 🌸</li>
     <li>When I knew I loved you: On our second date 💕</li>
   </ul>
@@ -86,14 +86,14 @@
   <p>Which place do I want to visit with you most?</p>
   <input type="text" placeholder="Ye bata sktee ho" />
   <br><br>
-  <p>Waise to I know but fir bhi I want to know, How much do you love me?</p>
-  <button class="button" onclick="alert('I love you MORE!')">More than anything ❤️</button>
+  <p>How much do you love me?</p>
+  <button class="button" onclick="alert('Can not express the feeling and the emotions but itna samajh lo — jo bhi hai bus tumse hai. I love you MORE!')">More than anything ❤️</button>
   <br><br>
-  <button class="button" onclick="nextSection('proposal')">Ready for the Quix my Love 💍</button>
+  <button class="button" onclick="nextSection('proposal')">Ready for the Question 💍</button>
 </div>
 
 <div class="container hidden" id="proposal">
-  <h2>Will You Be my Everything my LIfe? 💍</h2>
+  <h2>Will You Be my Everything, my Life? 💍</h2>
   <button class="button" onclick="showYesPage()">YES ❤️</button>
   <button class="button" id="noBtn" onclick="moveButton(this)">NO 🙈</button>
 </div>
@@ -102,7 +102,26 @@
   <h1>YAY! 🎉</h1>
   <p>You said YES! My heart is dancing! 💃🕺</p>
   <p class="heart">❤️❤️❤️❤️❤️</p>
-  <button class="button" onclick="nextSection('gallery')">See Our Journey 📸</button>
+  <button class="button" onclick="nextSection('timeline')">See Our Journey 📸</button>
+</div>
+
+<div class="container hidden" id="timeline">
+  <h2>Our Story Timeline 🕰️</h2>
+  <ul style="text-align: left; max-width: 600px; margin: auto;">
+    <li><strong>Feb 26, 2021:</strong> First message 💬</li>
+    <li><strong>March 5, 2021:</strong> First call 📞</li>
+    <li><strong>April 10, 2021:</strong> First date 🌃</li>
+    <li><strong>May 2021:</strong> First "I love you" 💖</li>
+  </ul>
+  <button class="button" onclick="nextSection('letters')">Next ✉️</button>
+</div>
+
+<div class="container hidden" id="letters">
+  <h2>Letters from My Heart 💌</h2>
+  <p>My dearest Pinnu,</p>
+  <p>Every moment with you is a blessing. You are my reason to smile every day... <br>
+    Hmne kabhi ye nahi socha ki aage kya hoga — bas ye socha tum ho to sab kuch sahi lagega 💕</p>
+  <button class="button" onclick="nextSection('gallery')">Next 📷</button>
 </div>
 
 <div class="container hidden" id="gallery">
@@ -113,14 +132,14 @@
     <img src="src/3.jpeg" style="width: 200px; border-radius: 15px;">
   </div>
   <br>
-  <button class="button" onclick="nextSection('finalPage')">Next 💍</button>
+  <button class="button" onclick="nextSection('finalPage')">Final Surprise 💖</button>
 </div>
 
 <div class="container hidden" id="finalPage">
   <h1>The Real Surprise 💌</h1>
   <p>From the moment I met you, I knew you were the one. So here’s something from my heart...</p>
   <video width="300" controls style="margin-top: 20px;">
-    <source src="src//video.mp4" type="video/mp4">
+    <source src="src/video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   <br><br>
@@ -148,7 +167,7 @@
   let clickCount = 0;
   function moveButton(btn) {
     clickCount++;
-    if (clickCount < 4) {
+    if (clickCount < 2) {
       const x = Math.floor(Math.random() * 200) - 100;
       const y = Math.floor(Math.random() * 200) - 100;
       btn.style.transform = `translate(${x}px, ${y}px)`;
